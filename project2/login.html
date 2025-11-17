@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login to your account</h1>
+    user_id : <input type="text" id="d1" ><br><br>
+    password : <input type="password" id="d2" ><br><br>
+    <button onclick="login2()">Login</button>
+    <p id="res"></p>
+    <p>Don't have an account? <a href="signup.html">Signup here</a></p>
+
+    <script>
+        function login2(){
+              let userid=document.getElementById("d1").value
+              let userpass=document.getElementById("d2").value
+              console.log(userid)
+              console.log(userpass)
+        // how to get data from local storage
+        let getid=localStorage.getItem("create_id")
+        let getpass=localStorage.getItem("create_pwd")
+        
+
+        if (userid===getid && userpass===getpass){
+            location.href="exam.html"  // redirection to exam page
+        }
+        else{
+            alert("invalid credentials")
+        }
+    }
+    </script>
+</body>
+</html>
