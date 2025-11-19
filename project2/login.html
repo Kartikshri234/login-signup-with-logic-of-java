@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login — Exam Portal</title>
+<style>
+body{margin:0;font-family:Inter,system-ui,Arial;background:#f8fafc;display:grid;place-items:center;height:100vh;color:#0f172a}
+.card{width:360px;background:#fff;padding:20px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06)}
+label{display:block;margin-top:10px}
+input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee}
+button{margin-top:14px;background:#2563eb;color:#fff;border:none;padding:10px 12px;border-radius:8px}
+p{margin:8px 0}
+a{color:#2563eb}
+.error{color:#b91c1c}
+</style>
 </head>
 <body>
-    <h1>Login to your account</h1>
-    user_id : <input type="text" id="d1" ><br><br>
-    password : <input type="password" id="d2" ><br><br>
-    <button onclick="login2()">Login</button>
-    <p id="res"></p>
-    <p>Don't have an account? <a href="signup.html">Signup here</a></p>
+<div class="card">
+<h2>Login</h2>
+<form id="loginForm" onsubmit="return false;">
+<label for="uid">User ID</label>
+<input id="uid" type="text" required />
+<label for="pass">Password</label>
+<input id="pass" type="password" required />
+<button id="loginBtn">Login</button>
+</form>
+<p id="res" aria-live="polite"></p>
+<p>Don't have an account? <a href="signup.html">Signup</a></p>
+</div>
 
-    <script>
-        function login2(){
-              let userid=document.getElementById("d1").value
-              let userpass=document.getElementById("d2").value
-              console.log(userid)
-              console.log(userpass)
-        // how to get data from local storage
-        let getid=localStorage.getItem("create_id")
-        let getpass=localStorage.getItem("create_pwd")
-        
 
-        if (userid===getid && userpass===getpass){
-            location.href="exam.html"  // redirection to exam page
-        }
-        else{
-            alert("invalid credentials")
-        }
-    }
-    </script>
+<script>
+document.getElementById('loginBtn').addEventListener('click', () => {
+const uid = document.getElementById('uid').value.trim()
+const pass = document.getElementById('pass').value
+const storedId = localStorage.getItem('create_id')
+const storedPwd = localStorage.getItem('create_pwd')
+const res = document.getElementById('res')
+
+
+if (!uid || !pass) {
+res.textContent = 'Enter both user id and password.'
+res.className = 'error'
+return
+}
+
+
+if (uid === storedId && pass === storedPwd) {
+// simple session marker for demo
+sessionStorage.setItem('loggedIn', 'true')
+sessionStorage.setItem('user', uid)
+// redirect to exam
+location.href = 'exam.html'
+} else {
+res.textContent = 'Invalid credentials — try again.'
+res.className = 'error'
+}
+})
+</script>
 </body>
 </html>

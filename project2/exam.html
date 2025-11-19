@@ -1,78 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Exam — Exam Portal</title>
+<style>
+body{margin:0;font-family:Inter,system-ui,Arial;background:#f3f4f6;color:#0f172a}
+header{background:#111827;color:#fff;padding:12px}
+.wrap{max-width:900px;margin:20px auto;padding:18px}
+.card{background:#fff;padding:18px;border-radius:10px;box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+h1{margin-top:0}
+.q{margin:12px 0;padding:12px;border-radius:8px;border:1px solid #e6e9ee}
+.options{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+label.option{display:flex;align-items:center;gap:8px;padding:8px;border-radius:6px}
+input[type=text].short{width:60px;padding:8px}
+.controls{display:flex;gap:8px;margin-top:12px}
+button{padding:10px 12px;border-radius:8px;border:none;cursor:pointer}
+.primary{background:#2563eb;color:#fff}
+.secondary{background:#e6e9ee}
+.result{margin-top:12px;padding:12px;border-radius:8px}
+.hidden{display:none}
+@media (max-width:640px){.wrap{padding:12px}}
+</style>
 </head>
 <body>
-    <h1>Welcome to the Exam Page</h1>
+<header>
+<div style="max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center">
+<div style="padding:8px;color:#fff;font-weight:700">Exam Portal</div>
+<div style="padding:8px;color:#fff"> <a href="index.html" style="color:#fff;text-decoration:none">Home</a></div>
+</div>
+</header>
 
-        <p>This is where the exam content will go.</p>  
 
-    <p>1. Who is the pm of india?</p>
-    <p>A. Rahul<br>B. Modi<br>C. Shivraj<br>D. Mamta Didi</p>
-    Ans. <input type="text" id="d1"><br>
+<main class="wrap">
+<div class="card">
+<h1>Quick Quiz</h1>
+<p>Answer the questions below. Scoring: +5 for correct, -2 for wrong. Minimum final score is 0.</p>
 
-    <p>2. What is the capital of France?</p>
-    <p>A. London<br>B. Paris<br>C. Rome<br>D. Berlin</p>
-    Ans. <input type="text" id="d2"><br>
-    <p>3. Which planet is known as the Red Planet?</p>
-    <p>A. Venus<br>B. Mars<br>C. Jupiter<br>D. Saturn</p>
-    Ans. <input type="text" id="d3"><br>
 
-    <p>4. Who wrote "Hamlet"?</p>
-    <p>A. Charles Dickens<br>B. William Shakespeare<br>C. Jane Austen<br>D. Mark Twain</p>
-    Ans. <input type="text" id="d4"><br>
-    <p>5. What is 2 + 2?</p>
-    <p>A. 3<br>B. 4<br>C. 5<br>D. 22</p>
-    Ans. <input type="text" id="d5"><br>
+<form id="examForm">
 
-    <p>6. Which is the largest ocean on Earth?</p>
-    <p>A. Atlantic<br>B. Indian<br>C. Pacific<br>D. Arctic</p>
-    Ans. <input type="text" id="d6"><br>
 
-    <button type="button " onclick="resubmit()">submit</button>
-    <button type="button" onclick="res()">Result</button>
-    <p type="text" id="fres"> </p>
+<div class="q" data-answer="B">
+<strong>1. Who is the PM of India?</strong>
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="A"> Rahul</label>
+<label class="option"><input type="radio" name="q1" value="B"> Narendra Modi</label>
+<label class="option"><input type="radio" name="q1" value="C"> Shivraj</label>
+<label class="option"><input type="radio" name="q1" value="D"> Mamta Didi</label>
+</div>
+</div>
 
-    <script>
-        let rightanswers=0
-        let wronganswers=0
-        function resubmit() {
-            
-            let ans1=document.getElementById("d1").value
-            let ans2=document.getElementById("d2").value
-            let ans3=document.getElementById("d3").value
-            let ans4=document.getElementById("d4").value
-            let ans5=document.getElementById("d5").value
-            let ans6=document.getElementById("d6").value
-            if (ans1==="B" || ans1==="b"){
-               rightanswers=rightanswers+1 } 
-            else {wronganswers=wronganswers+1}
-            if (ans2==="B" || ans2==="b"){
-               rightanswers=rightanswers+1 } 
-            else {wronganswers=wronganswers+1}
-            if (ans3==="B" || ans3==="b"){
-               rightanswers=rightanswers+1 } 
-            else {wronganswers=wronganswers+1}
-            if (ans4==="B" || ans4==="b"){
-               rightanswers=rightanswers+1 } 
-            else {wronganswers=wronganswers+1}
-            if (ans5==="B" || ans5==="b"){
-               rightanswers=rightanswers+1 } 
-            else {wronganswers=wronganswers+1}
-            if (ans6==="C" || ans6==="c"){
-               rightanswers=rightanswers+1 } 
-            else {wronganswers=wronganswers+1}
-        }
-            let total=(rightanswers*5)-(wronganswers*2)
-            document.getElementById("fres").innerHTML="Exam submitted successfully!"
-        function res() {
-            let total=(rightanswers*5)-(wronganswers*2)
-           document.getElementById("fres").innerHTML="Your total score is: " + total
-        }
-    </script>
 
-</body>
-</html>
+<div class="q" data-answer="B">
+<strong>2. What is the capital of France?</strong>
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="A"> London</label>
+<label class="option"><input type="radio" name="q2" value="B"> Paris</label>
+<label class="option"><input type="radio" name="q2" value="C"> Berlin</label>
+<label class="option"><input type="radio" name="q2" value="D"> Madrid</label>
+</div>
+</div>

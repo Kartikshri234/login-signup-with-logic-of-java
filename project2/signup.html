@@ -1,33 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Signup — Exam Portal</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Arial;margin:0;background:#f3f4f6;color:#0f172a;display:grid;place-items:center;height:100vh}
+.wrap{width:360px;background:#fff;padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.08)}
+h2{margin-top:0}
+label{display:block;margin:10px 0 6px;font-size:14px}
+input[type=text],input[type=password]{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee}
+.actions{display:flex;gap:8px;align-items:center;margin-top:14px}
+button{background:#2563eb;color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+.secondary{background:#e2e8f0;color:#0f172a}
+.msg{margin-top:10px;color:#065f46}
+.error{color:#b91c1c}
+a{color:#2563eb;text-decoration:none;font-weight:600}
+</style>
 </head>
 <body>
-    <h1>Create new account</h1>
-    user_id : <input type="text" id="d1"><br><br>
-    password : <input type="password" id="d2"><br><br>
-    <button type="button" onclick="sign()">Signup</button>
-    <p id="res"></p>
-    <p>Already have an account? <a href="login.html">Login here</a></p>
-    <script>
-        function sign(){
-           let userid=document.getElementById("d1").value
-           let userpass=document.getElementById("d2").value
-           console.log(userid)
-           console.log(userpass)
-           if(userid==="" || userpass===""){
-            document.getElementById("res").innerHTML="fill the both field"
-           }
-           else{
-            localStorage.setItem("create_id",userid)
-            localStorage.setItem("create_pwd",userpass)
-            document.getElementById("res").innerHTML="signup successfull"
-            location.href="login.html"   // this is used for redirection to login page after signup
-           }
-        }
-    </script>
+<div class="wrap">
+<h2>Create an account</h2>
+<form id="signupForm" novalidate>
+<label for="user">User ID</label>
+<input id="user" name="user" type="text" placeholder="choose a user id" required />
+
+
+<label for="pwd">Password</label>
+<input id="pwd" name="pwd" type="password" placeholder="choose a secure password" required minlength="4" />
+
+
+<div class="actions">
+<button type="submit">Sign up</button>
+<a class="secondary" href="login.html" style="padding:10px 12px;border-radius:8px;display:inline-block">I already have an account</a>
+</div>
+<p id="res" class="msg" aria-live="polite"></p>
+</form>
+</div>
+
+
+<script>
+const form = document.getElementById('signupForm')
+const res = document.getElementById('res')
+
+
+form.addEventListener('submit', (e) => {
+e.preventDefault()
+const user = document.getElementById('user').value.trim()
+const pwd = document.getElementById('pwd').value
+
+
+if (!user || !pwd) {
+res.textContent = 'Please fill in both fields.'
+res.className = 'msg error'
+return
+}
+
+
+// Simple check: do not overwrite existing account
+if (localStorage.getItem('create_id')) {
+// if different, prevent duplicate signups — for demo we allow one account only
+if (localStorage.getItem('create_id') === user) {
+res.textContent = 'This user id already exists. Please login.'
+res.className = 'msg error'
+return
+}
+}
+
+
+localStorage.setItem('create_id', user)
+localStorage.setItem('create_pwd', pwd)
+
+
+res.textContent = 'Signup successful — redirecting to login...'
+res.className = 'msg'
+
+
+// short delay then redirect
+setTimeout(() => location.href = 'login.html', 900)
+})
+</script>
 </body>
 </html>
