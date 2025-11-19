@@ -7,6 +7,72 @@
 </head>
 <body>
     <h1>Welcome to the Exam Page</h1>
-    <p>This is where the exam content will go.</p>
+
+        <p>This is where the exam content will go.</p>  
+
+    <p>1. Who is the pm of india?</p>
+    <p>A. Rahul<br>B. Modi<br>C. Shivraj<br>D. Mamta Didi</p>
+    Ans. <input type="text" id="d1"><br>
+
+    <p>2. What is the capital of France?</p>
+    <p>A. London<br>B. Paris<br>C. Rome<br>D. Berlin</p>
+    Ans. <input type="text" id="d2"><br>
+    <p>3. Which planet is known as the Red Planet?</p>
+    <p>A. Venus<br>B. Mars<br>C. Jupiter<br>D. Saturn</p>
+    Ans. <input type="text" id="d3"><br>
+
+    <p>4. Who wrote "Hamlet"?</p>
+    <p>A. Charles Dickens<br>B. William Shakespeare<br>C. Jane Austen<br>D. Mark Twain</p>
+    Ans. <input type="text" id="d4"><br>
+    <p>5. What is 2 + 2?</p>
+    <p>A. 3<br>B. 4<br>C. 5<br>D. 22</p>
+    Ans. <input type="text" id="d5"><br>
+
+    <p>6. Which is the largest ocean on Earth?</p>
+    <p>A. Atlantic<br>B. Indian<br>C. Pacific<br>D. Arctic</p>
+    Ans. <input type="text" id="d6"><br>
+
+    <button type="button " onclick="resubmit()">submit</button>
+    <button type="button" onclick="res()">Result</button>
+    <p type="text" id="fres"> </p>
+
+    <script>
+        let rightanswers=0
+        let wronganswers=0
+        function resubmit() {
+            
+            let ans1=document.getElementById("d1").value
+            let ans2=document.getElementById("d2").value
+            let ans3=document.getElementById("d3").value
+            let ans4=document.getElementById("d4").value
+            let ans5=document.getElementById("d5").value
+            let ans6=document.getElementById("d6").value
+            if (ans1==="B" || ans1==="b"){
+               rightanswers=rightanswers+1 } 
+            else {wronganswers=wronganswers+1}
+            if (ans2==="B" || ans2==="b"){
+               rightanswers=rightanswers+1 } 
+            else {wronganswers=wronganswers+1}
+            if (ans3==="B" || ans3==="b"){
+               rightanswers=rightanswers+1 } 
+            else {wronganswers=wronganswers+1}
+            if (ans4==="B" || ans4==="b"){
+               rightanswers=rightanswers+1 } 
+            else {wronganswers=wronganswers+1}
+            if (ans5==="B" || ans5==="b"){
+               rightanswers=rightanswers+1 } 
+            else {wronganswers=wronganswers+1}
+            if (ans6==="C" || ans6==="c"){
+               rightanswers=rightanswers+1 } 
+            else {wronganswers=wronganswers+1}
+        }
+            let total=(rightanswers*5)-(wronganswers*2)
+            document.getElementById("fres").innerHTML="Exam submitted successfully!"
+        function res() {
+            let total=(rightanswers*5)-(wronganswers*2)
+           document.getElementById("fres").innerHTML="Your total score is: " + total
+        }
+    </script>
+
 </body>
 </html>
